@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import GetAll from "./GetAll";
+import GetOne from "./GetOne";
 import "./App.css";
 
 class App extends Component {
@@ -8,6 +9,8 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <GetAll />
+          <br />
+          <GetOne />
         </header>
       </div>
     );

@@ -1,4 +1,9 @@
-export default function cats(state = [], action) {
+const initialState = {
+  catData: [],
+  loading: false
+};
+
+export default function cats(state = initialState, action) {
   switch (action.type) {
     case "LOADING":
       return {
