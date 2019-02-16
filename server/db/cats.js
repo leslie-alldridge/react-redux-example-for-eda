@@ -14,7 +14,7 @@ function saveOne(cat) {
   return db("cats")
     .insert(cat)
     .then(data => {
-      return db("cats").where({ id: data[0] });
+      return db("cats").select();
     });
 }
 
