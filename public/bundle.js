@@ -36373,10 +36373,11 @@ function (_Component) {
     });
 
     _this.state = {
-      id: "",
+      id: 0,
       name: "",
-      age: "",
-      location: ""
+      age: 0,
+      location: "",
+      error: false
     };
     return _this;
   }
@@ -36384,7 +36385,11 @@ function (_Component) {
   _createClass(EditOne, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Edit cat"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Edit cat"), this.state.error && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          color: "red"
+        }
+      }, "please fill out all details"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         style: {
           color: "red"
         }

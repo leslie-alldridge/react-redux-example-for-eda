@@ -6,10 +6,11 @@ class EditOne extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: "",
+      id: 0,
       name: "",
-      age: "",
-      location: ""
+      age: 0,
+      location: "",
+      error: false
     };
   }
 
@@ -34,6 +35,9 @@ class EditOne extends Component {
     return (
       <div>
         <h2>Edit cat</h2>
+        {this.state.error && (
+          <p style={{ color: "red" }}>please fill out all details</p>
+        )}
         <p style={{ color: "red" }}>{this.props.state.cats.err2}</p>
         <input
           name="id"
