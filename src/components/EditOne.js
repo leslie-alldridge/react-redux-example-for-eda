@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { saveOneAction } from "./actions/saveOne";
+import { editOneAction } from "../actions/editOne";
 
-class SaveOne extends Component {
+class EditOne extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: "",
       name: "",
       age: "",
       location: ""
@@ -16,6 +17,7 @@ class SaveOne extends Component {
     const { name, age, location } = this.state;
     this.props.SaveOne(name, age, location);
     this.setState({
+      id: "",
       name: "",
       age: "",
       location: ""
@@ -31,6 +33,14 @@ class SaveOne extends Component {
   render() {
     return (
       <div>
+        <h2>Edit cat</h2>
+        <input
+          name="id"
+          onChange={this.handleChange}
+          type="number"
+          placeholder="id"
+          value={this.state.id}
+        />
         <input
           name="name"
           onChange={this.handleChange}
@@ -66,12 +76,12 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
   return {
-    SaveOne: (name, location, age) =>
-      dispatch(saveOneAction(name, location, age))
+    EditOne: (id, name, location, age) =>
+      dispatch(editOneAction(id, name, location, age))
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SaveOne);
+)(EditOne);

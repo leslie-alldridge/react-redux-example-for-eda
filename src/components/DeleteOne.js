@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { deleteOneAction } from "./actions/deleteOne";
+import { deleteOneAction } from "../actions/deleteOne";
 
-class GetOne extends Component {
+class DeleteOne extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,6 +23,7 @@ class GetOne extends Component {
   render() {
     return (
       <div>
+        <h2>Delete cat :(</h2>
         <input
           onChange={this.handleChange}
           type="number"
@@ -49,4 +50,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(GetOne);
+)(DeleteOne);

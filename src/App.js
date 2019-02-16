@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import GetAll from "./GetAll";
-import GetOne from "./GetOne";
-import SaveOne from "./saveOne";
+import GetAll from "./components/GetAll";
+import GetOne from "./components/GetOne";
+import SaveOne from "./components/saveOne";
 import "./App.css";
-import DeleteOne from "./DeleteOne";
+import DeleteOne from "./components/DeleteOne";
+import EditOne from "./components/EditOne";
 
 class App extends Component {
   render() {
@@ -17,6 +18,8 @@ class App extends Component {
           <SaveOne />
           <br />
           <DeleteOne />
+          <br />
+          <EditOne />
         </header>
       </div>
     );

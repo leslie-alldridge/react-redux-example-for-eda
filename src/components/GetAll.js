@@ -1,24 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Loading from "./loading";
-import { getOneAction } from "./actions/getOne";
+import { getAllAction } from "../actions/getAll";
 
-class GetOne extends Component {
+class GetAll extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      num: 1
-    };
   }
 
-  getOne = () => {
-    this.props.getOne(this.state.num);
+  componentDidMount = () => {
+    this.props.getAll();
   };
 
-  handleChange = e => {
-    this.setState({
-      num: e.target.value
-    });
+  getAll = () => {
+    this.props.getAll();
   };
 
   render() {
@@ -29,14 +24,16 @@ class GetOne extends Component {
           <ul>
             {this.props.state.cats.catData &&
               this.props.state.cats.catData.map(cat => {
-                return cat.id == this.state.num ? (
-                  <li key={cat.id}>{cat.name}</li>
-                ) : null;
+                return (
+                  <li key={cat.id}>
+                    id: {cat.id} - name: {cat.name} - location: {cat.location} -
+                    age: {cat.age}
+                  </li>
+                );
               })}
           </ul>
         )}
-        <input onChange={this.handleChange} type="number" />
-        <button onClick={this.getOne}>I want this cat</button>
+        <button onClick={this.getAll}>Get All Button</button>
       </div>
     );
   }
@@ -50,11 +47,11 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getOne: id => dispatch(getOneAction(id))
+    getAll: () => dispatch(getAllAction())
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(GetOne);
+)(GetAll);

@@ -8,7 +8,8 @@ export default function cats(state = initialState, action) {
     case "LOADING":
       return {
         ...state,
-        loading: action.isFetching
+        loading: action.isFetching,
+        err: null
       };
     case "ERROR":
       return {
@@ -20,7 +21,8 @@ export default function cats(state = initialState, action) {
       return {
         ...state,
         loading: action.isFetching,
-        catData: action.cats
+        catData: action.cats,
+        err: null
       };
     default:
       return state;

@@ -17,4 +17,10 @@ router.post("/save", (req, res) => {
   db.saveOne(req.body).then(cats => res.json(cats));
 });
 
+router.post("/edit/:id", (req, res) => {
+  console.log(req.body);
+
+  // db.saveOne(req.body).then(cats => res.json(cats));
+});
+
 module.exports = router;
