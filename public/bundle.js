@@ -36773,13 +36773,31 @@ function (_Component) {
           age = _this$state.age,
           location = _this$state.location;
 
-      _this.props.SaveOne(name, age, location);
+      if (_this.state.age === "") {
+        _this.setState({
+          error: true
+        });
+      } else if (_this.state.name === "") {
+        _this.setState({
+          error: true
+        });
+      } else if (_this.state.location === "") {
+        _this.setState({
+          error: true
+        });
+      } else {
+        _this.setState({
+          error: false
+        });
 
-      _this.setState({
-        name: "",
-        age: "",
-        location: ""
-      });
+        _this.props.SaveOne(name, age, location);
+
+        _this.setState({
+          name: "",
+          age: "",
+          location: ""
+        });
+      }
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleChange", function (e) {
@@ -36789,7 +36807,8 @@ function (_Component) {
     _this.state = {
       name: "",
       age: "",
-      location: ""
+      location: "",
+      error: false
     };
     return _this;
   }
@@ -36797,7 +36816,11 @@ function (_Component) {
   _createClass(SaveOne, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Save cat"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Save cat"), this.state.error && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          color: "red"
+        }
+      }, "please fill out all details"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "name",
         onChange: this.handleChange,
         type: "text",

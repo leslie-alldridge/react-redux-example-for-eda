@@ -8,18 +8,34 @@ class SaveOne extends Component {
     this.state = {
       name: "",
       age: "",
-      location: ""
+      location: "",
+      error: false
     };
   }
 
   save = () => {
     const { name, age, location } = this.state;
-    this.props.SaveOne(name, age, location);
-    this.setState({
-      name: "",
-      age: "",
-      location: ""
-    });
+    if (this.state.age === "") {
+      this.setState({
+        error: true
+      });
+    } else if (this.state.name === "") {
+      this.setState({
+        error: true
+      });
+    } else if (this.state.location === "") {
+      this.setState({
+        error: true
+      });
+    } else {
+      this.setState({ error: false });
+      this.props.SaveOne(name, age, location);
+      this.setState({
+        name: "",
+        age: "",
+        location: ""
+      });
+    }
   };
 
   handleChange = e => {
@@ -32,6 +48,9 @@ class SaveOne extends Component {
     return (
       <div>
         <h2>Save cat</h2>
+        {this.state.error && (
+          <p style={{ color: "red" }}>please fill out all details</p>
+        )}
         <input
           name="name"
           onChange={this.handleChange}
