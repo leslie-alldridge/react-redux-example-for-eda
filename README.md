@@ -13,7 +13,7 @@ yarn start
 ```
 
 ## Is this deployed? 
-Yes, please check out https://reduxcats.herokuapp.com/
+Yes, please check out https://reduxcats.herokuapp.com/  (Note: may take 20 seconds to load as it's on a free server)
 
 ## Can I improve this code
 Certainly! I quickly created this without making it perfect. The idea was to include some mistakes or less efficient methods to encourage students to submit pull requests.
