@@ -2,7 +2,7 @@
 
 ## How to set up
 1. Clone repository
-2. ```
+```
 yarn
 yarn dev 
 
