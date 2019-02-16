@@ -1,8 +1,8 @@
 import axios from "axios";
 
-// This will make an API request to get cat by id, while telling redux its loading and what response comes back
+// This will make an API request to edit cat by id, while telling redux its loading and what response comes back
 export function editOneAction(id, name, age, location) {
-  console.log(id, name, age, location);
+  //create object to send with out post request!
   const data = {
     id,
     name,
@@ -12,12 +12,8 @@ export function editOneAction(id, name, age, location) {
   return function(dispatch) {
     dispatch(loading());
     axios.post(`/api/v1/cats/edit/:id`, data).then(response => {
-      console.log(response);
-
       if (response.data.length == 0) {
-        console.log("hit");
-
-        dispatch(errorMessage2("No cat with that ID"));
+        dispatch(errorMessage2("No cat with that ID")); //we can send the knex error from our backend which is preferred - stretch goal for you!
       } else {
         dispatch(receiveCats(response.data));
       }
@@ -32,6 +28,8 @@ function loading() {
   };
 }
 
+//using error message2 so it doesn't conflict with getOne. Otherwise both of my components will display errors
+//this is why we normally split out reducers and components so there's no overlap (my app renders every single component at once)
 function errorMessage2(err2) {
   return {
     type: "ERROR2",

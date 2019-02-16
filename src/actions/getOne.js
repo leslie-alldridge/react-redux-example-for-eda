@@ -2,16 +2,11 @@ import axios from "axios";
 
 // This will make an API request to get cat by id, while telling redux its loading and what response comes back
 export function getOneAction(id) {
-  console.log(id);
-
   return function(dispatch) {
     dispatch(loading());
     axios.get(`/api/v1/cats/${id}`).then(response => {
-      console.log(response);
-
       if (response.data[0] == null) {
-        console.log("hit");
-
+        //if no cats come back from DB that means none exist with that ID
         dispatch(errorMessage("no cat found"));
       } else {
         dispatch(receiveCats(response.data));

@@ -1,8 +1,7 @@
 import axios from "axios";
 
-// This will make an API request to get cat by id, while telling redux its loading and what response comes back
+// This will make an API request to save cat, while telling redux its loading and what response comes back
 export function saveOneAction(name, age, location) {
-  console.log(name, age, location);
   const data = {
     name,
     age,
@@ -11,8 +10,6 @@ export function saveOneAction(name, age, location) {
   return function(dispatch) {
     dispatch(loading());
     axios.post(`/api/v1/cats/save`, data).then(response => {
-      console.log(response);
-
       if (!response.status == 200) {
         dispatch(errorMessage(response.status));
       } else {

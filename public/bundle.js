@@ -35937,30 +35937,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteOneAction", function() { return deleteOneAction; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
- // This will make an API request to get cat by id, while telling redux its loading and what response comes back
+ // This will make an API request to delete cat by id, while telling redux its loading and what response comes back
 
 function deleteOneAction(id) {
-  console.log(id);
   return function (dispatch) {
-    dispatch(loading());
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.delete("/api/v1/cats/delete/".concat(id)).then(function (response) {
-      console.log(response);
+    dispatch(loading()); //redux please go to loading state while we do our API call
 
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.delete("/api/v1/cats/delete/".concat(id)).then(function (response) {
       if (!response.status == 200) {
-        dispatch(errorMessage(response.status));
+        dispatch(errorMessage(response.status)); //if DB fails or is down, this error runs through redux
       } else {
-        dispatch(receiveCats(response.data));
+        dispatch(receiveCats(response.data)); //we received data back successfully, tell redux
       }
     });
   };
-}
+} //time to go loading while we do our API calls
 
 function loading() {
   return {
     type: "LOADING",
     isFetching: true
   };
-}
+} //Oh no! an error! stop loading and send through the error
+
 
 function errorMessage(err) {
   return {
@@ -35968,7 +35967,8 @@ function errorMessage(err) {
     isFetching: false,
     err: err
   };
-}
+} //wahoo cats! stop loading and send through the cats data to redux
+
 
 function receiveCats(cats) {
   return {
@@ -35992,10 +35992,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editOneAction", function() { return editOneAction; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
- // This will make an API request to get cat by id, while telling redux its loading and what response comes back
+ // This will make an API request to edit cat by id, while telling redux its loading and what response comes back
 
 function editOneAction(id, name, age, location) {
-  console.log(id, name, age, location);
+  //create object to send with out post request!
   var data = {
     id: id,
     name: name,
@@ -36005,11 +36005,8 @@ function editOneAction(id, name, age, location) {
   return function (dispatch) {
     dispatch(loading());
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/v1/cats/edit/:id", data).then(function (response) {
-      console.log(response);
-
       if (response.data.length == 0) {
-        console.log("hit");
-        dispatch(errorMessage2("No cat with that ID"));
+        dispatch(errorMessage2("No cat with that ID")); //we can send the knex error from our backend which is preferred - stretch goal for you!
       } else {
         dispatch(receiveCats(response.data));
       }
@@ -36022,7 +36019,9 @@ function loading() {
     type: "LOADING",
     isFetching: true
   };
-}
+} //using error message2 so it doesn't conflict with getOne. Otherwise both of my components will display errors
+//this is why we normally split out reducers and components so there's no overlap (my app renders every single component at once)
+
 
 function errorMessage2(err2) {
   return {
@@ -36057,15 +36056,12 @@ __webpack_require__.r(__webpack_exports__);
  // This will make an API request to get all cats, while telling redux its loading and what response comes back
 
 function getAllAction() {
-  console.log("action");
   return function (dispatch) {
     dispatch(loading());
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/v1/cats/").then(function (response) {
       if (!response.status == 200) {
-        console.log(response);
         dispatch(errorMessage(response.status));
       } else {
-        console.log(response);
         dispatch(receiveCats(response.data));
       }
     });
@@ -36112,14 +36108,11 @@ __webpack_require__.r(__webpack_exports__);
  // This will make an API request to get cat by id, while telling redux its loading and what response comes back
 
 function getOneAction(id) {
-  console.log(id);
   return function (dispatch) {
     dispatch(loading());
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/v1/cats/".concat(id)).then(function (response) {
-      console.log(response);
-
       if (response.data[0] == null) {
-        console.log("hit");
+        //if no cats come back from DB that means none exist with that ID
         dispatch(errorMessage("no cat found"));
       } else {
         dispatch(receiveCats(response.data));
@@ -36165,10 +36158,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "saveOneAction", function() { return saveOneAction; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
- // This will make an API request to get cat by id, while telling redux its loading and what response comes back
+ // This will make an API request to save cat, while telling redux its loading and what response comes back
 
 function saveOneAction(name, age, location) {
-  console.log(name, age, location);
   var data = {
     name: name,
     age: age,
@@ -36177,8 +36169,6 @@ function saveOneAction(name, age, location) {
   return function (dispatch) {
     dispatch(loading());
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/v1/cats/save", data).then(function (response) {
-      console.log(response);
-
       if (!response.status == 200) {
         dispatch(errorMessage(response.status));
       } else {
@@ -36879,7 +36869,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var store = Object(redux__WEBPACK_IMPORTED_MODULE_4__["createStore"])(_reducers__WEBPACK_IMPORTED_MODULE_6__["default"], Object(redux__WEBPACK_IMPORTED_MODULE_4__["compose"])(Object(redux__WEBPACK_IMPORTED_MODULE_4__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_5__["default"]), window.devToolsExtension ? window.devToolsExtension() : function (f) {
   return f;
-}));
+} //remove this line for deployment
+//the new dev tools package is an import import { composeWithDevTools } from 'redux-devtools-extension'
+//please update this and submit a pull request #challenge
+));
 react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_3__["Provider"], {
   store: store
 }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App__WEBPACK_IMPORTED_MODULE_2__["default"], null)), document.getElementById("root"));
@@ -36900,10 +36893,17 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//setting up initial state so react can still map over an empty catData array
+//without this the code blows up without conditional rendering checking what props do/don't exist
 var initialState = {
   catData: [],
   loading: false
-};
+}; //Take note that we're adjusting loading all the time, otherwise the reducer will leave it
+//For example if we hit loading, then the error case, we need to tell redux stop loading otherwise
+//our front end will continue to display a loading bar indefinitely.
+//using the spread operator ...state is very important if you want to maintain redux state. Otherwise if you only do
+//loading:action.isLoading that's all that you'll see in redux, everything else will vanish!
+
 function cats() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
@@ -36915,6 +36915,7 @@ function cats() {
         err: null,
         err2: null
       });
+    //Note: you can chain cases like these below :)
 
     case "ERROR":
     case "ERROR2":
@@ -36951,6 +36952,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _cats__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cats */ "./src/reducers/cats.js");
 
+ //combine all reducer files and squish them into one object. this overall object is our Redux Store State
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   cats: _cats__WEBPACK_IMPORTED_MODULE_1__["default"]

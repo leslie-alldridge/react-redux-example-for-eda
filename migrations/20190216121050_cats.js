@@ -1,3 +1,5 @@
+// knex migrations to build our database
+
 exports.up = function(knex, Promise) {
   return knex.schema.createTableIfNotExists("cats", table => {
     table.increments("id");
