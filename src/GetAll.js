@@ -26,7 +26,8 @@ class GetAll extends Component {
               this.props.state.cats.catData.map(cat => {
                 return (
                   <li key={cat.id}>
-                    {cat.name} - {cat.location} - {cat.age}
+                    id: {cat.id} - name: {cat.name} - location: {cat.location} -
+                    age: {cat.age}
                   </li>
                 );
               })}

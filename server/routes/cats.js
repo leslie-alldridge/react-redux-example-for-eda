@@ -9,9 +9,9 @@ router.get("/:id", (req, res) => {
   db.getOne(req.params.id).then(cats => res.json([cats]));
 });
 
-// router.post("/:id", (req, res) => {
-//   db.editOne(req.params.id, req.body.data).then(cats => res.json([cats]));
-// });
+router.delete("/delete/:id", (req, res) => {
+  db.deleteOne(req.params.id).then(cats => res.json(cats));
+});
 
 router.post("/save", (req, res) => {
   db.saveOne(req.body).then(cats => res.json(cats));

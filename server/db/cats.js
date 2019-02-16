@@ -18,8 +18,18 @@ function saveOne(cat) {
     });
 }
 
+function deleteOne(id) {
+  return db("cats")
+    .where({ id })
+    .del()
+    .then(data => {
+      return db("cats").select();
+    });
+}
+
 module.exports = {
   getAll,
   getOne,
-  saveOne
+  saveOne,
+  deleteOne
 };

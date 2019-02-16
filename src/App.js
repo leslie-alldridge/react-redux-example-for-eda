@@ -3,6 +3,7 @@ import GetAll from "./GetAll";
 import GetOne from "./GetOne";
 import SaveOne from "./saveOne";
 import "./App.css";
+import DeleteOne from "./DeleteOne";
 
 class App extends Component {
   render() {
@@ -14,6 +15,8 @@ class App extends Component {
           <GetOne />
           <br />
           <SaveOne />
+          <br />
+          <DeleteOne />
         </header>
       </div>
     );
