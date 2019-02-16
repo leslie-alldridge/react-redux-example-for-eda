@@ -1,4 +1,14 @@
 # React Redux CRUD actions example for students
+# Includes cats ! 
+:smiley_cat:
+:smile_cat:
+:heart_eyes_cat:
+:kissing_cat:
+:smirk_cat:
+:scream_cat:
+:crying_cat_face:
+:joy_cat:
+:pouting_cat:
 
 ## How to set up
 1. Clone repository and run the commands below (first commands for development, second commands without page reload)
