@@ -1,5 +1,13 @@
-To set up
+# React Redux CRUD actions example for students
 
-1. yarn
-2. yarn dev
-3. success
+## How to set up
+1. Clone repository
+2. ```
+yarn
+yarn dev 
+
+or 
+
+yarn run webpack
+yarn start
+```
