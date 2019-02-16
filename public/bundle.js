@@ -36007,8 +36007,9 @@ function editOneAction(id, name, age, location) {
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/v1/cats/edit/:id", data).then(function (response) {
       console.log(response);
 
-      if (!response.status == 200) {
-        dispatch(errorMessage(response.status));
+      if (response.data.length == 0) {
+        console.log("hit");
+        dispatch(errorMessage2("No cat with that ID"));
       } else {
         dispatch(receiveCats(response.data));
       }
@@ -36023,11 +36024,11 @@ function loading() {
   };
 }
 
-function errorMessage(err) {
+function errorMessage2(err2) {
   return {
-    type: "ERROR",
+    type: "ERROR2",
     isFetching: false,
-    err: err
+    err2: err2
   };
 }
 
@@ -36362,11 +36363,12 @@ function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "save", function () {
       var _this$state = _this.state,
+          id = _this$state.id,
           name = _this$state.name,
           age = _this$state.age,
           location = _this$state.location;
 
-      _this.props.SaveOne(name, age, location);
+      _this.props.EditOne(id, name, age, location);
 
       _this.setState({
         id: "",
@@ -36392,7 +36394,11 @@ function (_Component) {
   _createClass(EditOne, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Edit cat"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Edit cat"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          color: "red"
+        }
+      }, this.props.state.cats.err2), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "id",
         onChange: this.handleChange,
         type: "number",
@@ -36906,20 +36912,24 @@ function cats() {
     case "LOADING":
       return _objectSpread({}, state, {
         loading: action.isFetching,
-        err: null
+        err: null,
+        err2: null
       });
 
     case "ERROR":
+    case "ERROR2":
       return _objectSpread({}, state, {
         loading: action.isFetching,
-        err: action.err
+        err: action.err,
+        err2: action.err2
       });
 
     case "SUCCESS":
       return _objectSpread({}, state, {
         loading: action.isFetching,
         catData: action.cats,
-        err: null
+        err: null,
+        err2: null
       });
 
     default:

@@ -14,8 +14,8 @@ class EditOne extends Component {
   }
 
   save = () => {
-    const { name, age, location } = this.state;
-    this.props.SaveOne(name, age, location);
+    const { id, name, age, location } = this.state;
+    this.props.EditOne(id, name, age, location);
     this.setState({
       id: "",
       name: "",
@@ -34,6 +34,7 @@ class EditOne extends Component {
     return (
       <div>
         <h2>Edit cat</h2>
+        <p style={{ color: "red" }}>{this.props.state.cats.err2}</p>
         <input
           name="id"
           onChange={this.handleChange}

@@ -14,8 +14,10 @@ export function editOneAction(id, name, age, location) {
     axios.post(`/api/v1/cats/edit/:id`, data).then(response => {
       console.log(response);
 
-      if (!response.status == 200) {
-        dispatch(errorMessage(response.status));
+      if (response.data.length == 0) {
+        console.log("hit");
+
+        dispatch(errorMessage2("No cat with that ID"));
       } else {
         dispatch(receiveCats(response.data));
       }
@@ -30,11 +32,11 @@ function loading() {
   };
 }
 
-function errorMessage(err) {
+function errorMessage2(err2) {
   return {
-    type: "ERROR",
+    type: "ERROR2",
     isFetching: false,
-    err
+    err2
   };
 }
 
