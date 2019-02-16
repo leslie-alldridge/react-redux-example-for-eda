@@ -23,3 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 *.sqlite3
+public/bundle.js
+public/bundle.js.map
