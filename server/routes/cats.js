@@ -6,9 +6,15 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  console.log(req.params.id);
-
   db.getOne(req.params.id).then(cats => res.json([cats]));
+});
+
+// router.post("/:id", (req, res) => {
+//   db.editOne(req.params.id, req.body.data).then(cats => res.json([cats]));
+// });
+
+router.post("/save", (req, res) => {
+  db.saveOne(req.body).then(cats => res.json(cats));
 });
 
 module.exports = router;

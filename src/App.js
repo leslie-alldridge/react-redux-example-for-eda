@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import GetAll from "./GetAll";
 import GetOne from "./GetOne";
+import SaveOne from "./saveOne";
 import "./App.css";
 
 class App extends Component {
@@ -11,6 +12,8 @@ class App extends Component {
           <GetAll />
           <br />
           <GetOne />
+          <br />
+          <SaveOne />
         </header>
       </div>
     );
