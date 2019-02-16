@@ -36361,9 +36361,9 @@ function (_Component) {
       _this.props.EditOne(id, name, age, location);
 
       _this.setState({
-        id: "",
+        id: 0,
         name: "",
-        age: "",
+        age: 0,
         location: ""
       });
     });

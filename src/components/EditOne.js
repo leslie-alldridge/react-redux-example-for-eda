@@ -18,9 +18,9 @@ class EditOne extends Component {
     const { id, name, age, location } = this.state;
     this.props.EditOne(id, name, age, location);
     this.setState({
-      id: "",
+      id: 0,
       name: "",
-      age: "",
+      age: 0,
       location: ""
     });
   };
